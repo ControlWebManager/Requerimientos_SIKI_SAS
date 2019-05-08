@@ -1,14 +1,14 @@
 # Requerimiento 1060 , 1061 , 1064
 
-##Descripción: 
+## Descripción: 
 
 Reorganización de los botones de favoritos, agregar a carrito y otras, en la vista form y vista lista
 
-##Nombre de la Aplicacion Final: 
+## Nombre de la Aplicacion Final: 
 
 siki_buttons_addtocart_wishlist
 
-###Nota:
+### Nota:
  
  Anteriormente esta aplicación se llamaba shop_siki (se puede eliminar)
 
@@ -38,15 +38,15 @@ Anexo A  | Anexo B
 
 # Requerimiento 1063
 
-##Descripción: 
+## Descripción: 
 
 Mejoras para compartir productos en redes sociales
 
-##Nombre de la Aplicacion Final: 
+## Nombre de la Aplicacion Final: 
 
 siki_website_sale_social_share
 
-###Nota:
+### Nota:
  
  Anteriormente esta aplicación se llamaba website_sale_social_share_siki (se puede eliminar)
 
@@ -60,11 +60,11 @@ siki_website_sale_social_share
 ---------------------
 # Requerimiento 1068
 
-##Descripción: 
+## Descripción: 
 
 Restricción para salir del punto de ventas
 
-##Nombre de la Aplicacion Final: 
+## Nombre de la Aplicacion Final: 
 
 siki_pos_close_button
 
@@ -77,7 +77,7 @@ siki_pos_close_button
 ---------------------
 # Requerimiento Especial POS
 
-##Descripción: 
+## Descripción: 
 
 Entregas varias de aplicaciones
 
@@ -87,7 +87,7 @@ siki_pos_block  | Bloqueo de POS ; Botón en español "Bloqueo/Caja" ; Mejoras e
 siki_pos_password_hide  | Ocultar clave (pin) dentro de la configuraciones de Usuario pestaña TPV
 siki_pos_restricciones  | Privilegio de usuario para procesar descuentos o cambiar precios en Sesión de POS    
      
-##Mapa de aplicaciones:
+## Mapa de aplicaciones:
 
 ![](https://pandao.github.io/editor.md/examples/images/4.jpg)
 
@@ -96,11 +96,11 @@ siki_pos_restricciones  | Privilegio de usuario para procesar descuentos o cambi
 ---------------------
 # Requerimiento Especial para SIkisoftware.com
 
-##Descripción: 
+## Descripción: 
 
 Esta aplicación elimina todos los enlaces tóxicos del backend y el front end que apuntan a sikisoftware.com, estos enlaces afectan al posicionamiento de la página web
 
-##Nombre de la Aplicacion Final: 
+## Nombre de la Aplicacion Final: 
 
 siki_delete_link
 
