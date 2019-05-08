@@ -89,7 +89,7 @@ siki_pos_restricciones  | Privilegio de usuario para procesar descuentos o cambi
      
 ## Mapa de aplicaciones:
 
-![](https://pandao.github.io/editor.md/examples/images/4.jpg)
+![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/Selecci%C3%B3n_733.png)
 
 
 ---------------------
