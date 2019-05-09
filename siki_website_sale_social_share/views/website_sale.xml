@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="product" inherit_id="website_sale.product" name="Social share" customize_show="True" active="True">
+
+            <xpath expr="//*[contains(@class, 'js_add_cart_variants')]/../hr" position="attributes">
+                <attribute name="style">margin: 15px 0px 10px !important;padding: 0px !important;</attribute>
+            </xpath>
+            <xpath expr="//*[contains(@class, 'js_add_cart_variants')]/../hr" position="after">
+
+                <h2 class="social-share-buttons mt16" data-bind="social-share-buttons" style="margin-top: 0px !important;"></h2>
+            </xpath>
+        </template>
+
+    </data>
+</openerp>

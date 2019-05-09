@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+        <template id="meta_antitoxic_web" inherit_id="web.layout" name="Anti Toxic Web">
+          <xpath expr="//meta[@http-equiv='content-type']" position="after">
+                <meta name="googlebot" content="nofollow" />
+                <meta name="robots" content="nofollow" />
+          </xpath>
+        </template>
+
+        <template id="meta_antitoxic_website" inherit_id="website.layout" name="Anti Toxic WebSite">
+          <xpath expr="//meta[@name='viewport']" position="after">
+                <meta name="googlebot" content="nofollow" />
+                <meta name="robots" content="nofollow" />
+          </xpath>
+        </template>
+
+</openerp>

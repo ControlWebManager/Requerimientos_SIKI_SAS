@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+
+        <template id="website_sale_wishlist.product_add_to_wishlist"
+          inherit_id="website_sale.product"
+          customize_show="True"
+          name="Add to Wishlist From Form">
+            <xpath expr="//*[@id='add_to_cart']" position="after">
+                 <div style="width: 100%; ">
+                     <div style="float: left;margin-left: 6px;">
+                        <t t-call="website_sale_wishlist.product_toggle">
+                            <t t-set="extra_class" t-value="'btn-lg mt8'"/>
+                        </t>
+                     </div>
+                </div>
+            </xpath>
+            <xpath expr="//*[@id='add_to_cart']" position="attributes">
+                   <attribute name="t-att-style">'float: left;clear: both;'</attribute>
+
+            </xpath>
+        </template>
+
+        <template id="website_sale_wishlist.products_add_to_wishlist"
+          inherit_id="website_sale.products_item"
+          customize_show="True"
+          name="Add to Wishlist From List">
+
+                <xpath expr="//form" position="before">
+
+                    <t t-if="not status_view">
+                         <t t-call="website_sale_wishlist.product_toggle">
+                            <t t-set="extra_class" t-value="'btn-xs'"/>
+                         </t>
+                    </t>
+                 </xpath>
+                <!--<xpath expr="//*[@class='product_price']">-->
+                <xpath expr="//section//div[@name='prod_qty_value_and_buttons']" position="before">
+                    <t t-if="status_view">
+                        <t t-call="website_sale_wishlist.product_toggle">
+                            <t t-set="extra_class" t-value="'btn-xs'"/>
+                        </t>
+                    </t>
+                </xpath>
+
+        </template>
+
+        <template id="product_toggle_extend" priority="24"
+          name="Add to Wishlist Widget Extend"
+          inherit_id="website_sale_wishlist.product_toggle">
+            <xpath expr="//button" position="attributes">
+                   <attribute name="t-att-style">'float: right;margin-top: 5px;margin-right:2%; z-index: 999;position: relative;' if not status_view else 'float: right;clear: both;'</attribute>
+
+            </xpath>
+        </template>
+
+</openerp>
+ <template id="product_add_to_wishlist_extend_form"
+          inherit_id="website_sale_wishlist.product_add_to_wishlist"
+          name="Add to Wishlist From Form">
+            <xpath expr="//*[@id='add_to_cart']" position="after">
+                 <div style="width: 100%; ">
+                     <div style="float: left;margin-left: 6px;">
+                        <t t-call="website_sale_wishlist.product_toggle">
+                            <t t-set="extra_class" t-value="'btn-lg mt8'"/>
+                        </t>
+                     </div>
+                </div>
+            </xpath>
+            <xpath expr="//*[@id='add_to_cart']" position="attributes">
+                   <attribute name="t-att-style">'float: left;clear: both;'</attribute>
+
+            </xpath>
+        </template>
+
+        <template id="products_add_to_wishlist_extend_list"
+          inherit_id="website_sale_wishlist.products_add_to_wishlist"
+          name="Add to Wishlist From List">
+
+                <xpath expr="//form" position="before">
+
+                    <t t-if="not status_view">
+                         <t t-call="website_sale_wishlist.product_toggle">
+                            <t t-set="extra_class" t-value="'btn-xs'"/>
+                         </t>
+                    </t>
+                 </xpath>
+                <!--<xpath expr="//*[@class='product_price']">-->
+                <xpath expr="//section//div[@name='prod_qty_value_and_buttons']" position="before">
+                    <t t-if="status_view">
+                        <t t-call="website_sale_wishlist.product_toggle">
+                            <t t-set="extra_class" t-value="'btn-xs'"/>
+                        </t>
+                    </t>
+                </xpath>
+
+        </template>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <template id="assets_editor_shop_siki" inherit_id="website.assets_editor" name="Shop Custom Extend">
+          <xpath expr="." position="inside">
+
+             <!-- <link rel="stylesheet" href="/add_to_cart/static/src/css/qty_css.css"/> -->
+             <script type="text/javascript" src="/siki_buttons_addtocart_wishlist/static/src/js/shop_siki.js"></script>
+          </xpath>
+        </template>
+       <!-- PRODUCT VIEW ON SHOP FORM AND SHOP-CART FORM Extend-->
+       <template id="products_item_inherited_extend_attr" priority="21"
+          name="Add to Cart Extend Atrr Form"
+          inherit_id="add_to_cart.products_item_inherited">
+
+            <xpath expr="//form[@action='/shop/cart/update_no_redirect']" position="attributes">
+                <attribute name="style"></attribute>
+            </xpath>
+           <xpath expr="//form[@action='/shop/cart/update_no_redirect']" position="attributes">
+                <attribute name="t-att-style">'display:inline-block;' if not website.compute_website_view() else 'display:inline-block;width:100%;'</attribute>
+            </xpath>
+
+            <xpath expr="//form//section[1]" position="attributes">
+                <attribute name="t-att-style">'float: left;'</attribute>
+            </xpath>
+            <xpath expr="//form//section[1]//div[@name='prod_qty_value_and_buttons']" position="replace"/>
+
+
+       </template>
+
+       <template
+           id="products_item_inherited_extend" priority="23"
+           inherit_id="add_to_cart.products_item_inherited"
+           name="Add to Cart with Ease Extend">
+           <!--View Form -->
+            <xpath expr="//form//section[1]" position="after">
+
+                <section >
+
+                    <div name="prod_qty_value_and_buttons">
+                        <t t-set="website_sale_order" t-value="website.sale_get_order()"/>
+                        <t t-set="int_prod_qty" t-value="website.is_product_in_cart(product.product_variant_ids[0].id)"/>
+
+                        <a class="btn btn-default btn-xs fa fa-shopping-cart a-submit" t-if="not int_prod_qty" t-att-row="product.product_variant_ids[0].id"/>
+                        <div class="css_quantity input-group oe_website_spinner" t-if="not int_prod_qty">
+                            <input type="text" class="js_quantity form-control" id="cart_quantity_txt_box" data-min="1" name="add_qty" value="1"
+                                t-if="not int_prod_qty" maxlength="2" onkeydown='allow_numeric_input(event)' t-att-row="product.product_variant_ids[0].id"/>
+                        </div>
+
+                        <div class="css_quantity input-group oe_website_spinner" t-if="int_prod_qty">
+                            <span class="input-group-addon" t-if="int_prod_qty">
+                                <a t-attf-href="#" class="mb8 js_add_cart_json_inherited">
+                                    <i class="fa fa-minus"></i>
+                                </a>
+                            </span>
+                            <input type="text" class="js_quantity_inherited form-control" id="cart_quantity_txt_box" data-min="0" t-att-name="int(product.product_variant_ids[0].id)"
+                                    t-att-value="int(int_prod_qty)" t-if="int_prod_qty" maxlength="2" readonly="1" onkeydown='allow_numeric_input(event)'/>
+                            <span class="input-group-addon" t-if="int_prod_qty">
+                                <a t-attf-href="#" class="mb8 float_left js_add_cart_json_inherited">
+                                    <i class="fa fa-plus"></i>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </section>
+            </xpath>
+            <!--View List -->
+            <!-- style section 2 -->
+            <xpath expr="//form//section[2]" position="attributes">
+                <attribute name="t-att-style">'background: none;padding: 0px;' if not website.compute_website_view() else 'margin-top:5px; padding-right:0px;padding-bottom: 0px;'</attribute>
+            </xpath>
+            <!-- prod_qty_value_and_buttons -->
+            <xpath expr="//form//section[2]//div[@name='prod_qty_value_and_buttons']" position="attributes">
+                <attribute name="t-att-style">'margin-top: 6%;margin-right: 2%; position: relative;' if not website.compute_website_view() else 'margin-top:5px; float:right;clear:both;'</attribute>
+            </xpath>
+
+            <xpath expr="//form" position="after" >
+                 <form action="/shop/cart/update" method="post" style="display: grid;">
+
+                      <t t-if="show_publish">
+                        <div id="website_published_button" class="" groups="base.group_sale_manager">
+                            <t t-call="website.publish_management">
+                              <t t-set="object" t-value="product"/>
+                              <t t-set="publish_edit" t-value="True"/>
+                              <t t-set="action" t-value="'product.product_template_action'"/>
+                            </t>
+                        </div>
+                      </t>
+
+                 </form>
+            </xpath>
+        </template>
+
+        <!-- Requiriments 1064 Vista de Producto Individual, boton anadir carrito, dseshabilitar opcion Cart1 -->
+
+        <template id="product_individual_oraganization_buttons"
+                   inherit_id="website_sale.product"
+                   customize_show="True"
+                   name="Add Wiahlist Buttons">
+             <xpath expr="//*[@id='add_to_cart']" position="after">
+                <!-- boton favoritos -->
+                 <div style=" float: left;">
+
+                     <div style="float: left;margin-left: 6px;">
+                        <t t-call="website_sale_wishlist.product_toggle">
+                            <t t-set="extra_class" t-value="'btn-lg mt8'"/>
+                        </t>
+                     </div>
+                </div>
+            </xpath>
+
+            <xpath expr="//*[@id='add_to_cart']" position="attributes">
+                   <attribute name="style">float: left;</attribute>
+
+            </xpath>
+
+            <xpath expr="//form[@class='js_add_cart_variants']" position="attributes">
+                   <attribute name="style">display: inline-block;</attribute>
+
+            </xpath>
+        </template>
+        <!--
+        <template id="product_quantity_add_to_cart"
+                   inherit_id="website_sale.product_quantity"
+                   name="Quantity product add to cart">
+           <xpath expr="//div[@class='css_quantity input-group oe_website_spinner']" position="after">
+                   <hr style="margin: 0px !important;"></hr>
+
+            </xpath>
+             <xpath expr="//div[@class='css_quantity input-group oe_website_spinner']" position="attributes">
+                   <attribute name="style">float:left;</attribute>
+
+            </xpath>
+        </template>
+        -->
+
+        <template id="product_individual_add_to_cart"
+                   inherit_id="add_to_cart.product_quantity_inherited"
+                   name="Organization product add to cart">
+            <xpath expr="//a[@id='add_to_cart']" position="attributes">
+                   <attribute name="style">float: left;</attribute>
+
+            </xpath>
+            <xpath expr="//div[@id='oe_website_spinner_div']" position="attributes">
+                   <attribute name="style">height: 63px;</attribute>
+
+            </xpath>
+            <xpath expr="//div[@id='oe_website_spinner_div']//input" position="attributes">
+                   <attribute name="style">height: 63px; width: 51px;</attribute>
+
+            </xpath>
+        </template>
+
+        <!-- INI Diseno aplicacion wishlist -->
+
+        <template id="products_add_to_wishlist_extend_list"
+          inherit_id="website_sale.products_item"
+          customize_show="True"
+          name="Add to Wishlist From List Extend">
+                <xpath expr="//form" position="before">
+
+                    <t t-if="not website.compute_website_view()">
+                         <t t-call="website_sale_wishlist.product_toggle">
+                            <t t-set="extra_class" t-value="'btn-xs'"/>
+                         </t>
+                    </t>
+                 </xpath>
+                <!--<xpath expr="//*[@class='product_price']">-->
+                <xpath expr="//section//div[@name='prod_qty_value_and_buttons']" position="before">
+                    <t t-if="website.compute_website_view()">
+                        <t t-call="website_sale_wishlist.product_toggle">
+                            <t t-set="extra_class" t-value="'btn-xs'"/>
+                        </t>
+                    </t>
+                </xpath>
+
+
+        </template>
+
+
+        <!-- END Diseno aplicacion wishlist -->
+
+        <template id="product_toggle_extend" priority="24"
+          name="Add to Wishlist Widget Extend"
+          inherit_id="website_sale_wishlist.product_toggle">
+            <xpath expr="//button" position="attributes">
+                   <attribute name="t-att-style">'float: right;margin-top: 5px;margin-right:2%; z-index: 999;position: relative;' if not website.compute_website_view() else 'float: right;clear: both;'</attribute>
+
+            </xpath>
+        </template>
+
+
+    </data>
+</openerp>
