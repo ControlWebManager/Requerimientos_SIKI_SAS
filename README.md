@@ -127,6 +127,8 @@ En la versión original del point_of_sale Odoo_v09, las aplicaciones pos_product
 ---------------------
 # Requerimiento Especial para SIkisoftware.com
 
+## EN OBSERVACIÓN // NO INSTALAR TODAVÍA
+
 ## Descripción: 
 
 Esta aplicación elimina todos los enlaces tóxicos del backend y el front end que apuntan a sikisoftware.com, estos enlaces afectan al posicionamiento de la página web
