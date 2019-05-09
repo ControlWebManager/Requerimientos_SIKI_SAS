@@ -127,7 +127,7 @@ En la versión original del point_of_sale Odoo_v09, las aplicaciones pos_product
 ---------------------
 # Requerimiento Especial para SIkisoftware.com
 
-## EN OBSERVACIÓN // NO INSTALAR TODAVÍA
+## EN OBSERVACIÓN // NO INSTALAR TODAVÍA 09/05/2019
 
 ## Descripción: 
 
