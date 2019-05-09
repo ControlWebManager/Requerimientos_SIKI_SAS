@@ -4,7 +4,7 @@
 
 Reorganización de los botones de favoritos, agregar a carrito y otras, en la vista form y vista lista
 
-## Nombre de la Aplicacion Final: 
+## Nombre de la Aplicación Final: 
 
 siki_buttons_addtocart_wishlist
 
@@ -45,7 +45,7 @@ Anexo C  | Anexo D
 
 Mejoras para compartir productos en redes sociales
 
-## Nombre de la Aplicacion Final: 
+## Nombre de la Aplicación Final: 
 
 siki_website_sale_social_share
 
@@ -71,7 +71,7 @@ siki_website_sale_social_share
 
 Restricción para salir del punto de ventas
 
-## Nombre de la Aplicacion Final: 
+## Nombre de la Aplicación Final: 
 
 siki_pos_close_button
 
@@ -128,11 +128,15 @@ Anexo A  | Anexo B
 
 Esta aplicación elimina todos los enlaces tóxicos del backend y el front end que apuntan a sikisoftware.com, estos enlaces afectan al posicionamiento de la página web
 
-## Nombre de la Aplicacion Final: 
+## Nombre de la Aplicación Final: 
 
 siki_delete_link
 
 ### Lista de Modificaciones
 
     * V.-1.0 Add meta no robox and no index
+
+## Anexos
     
+![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/Selecci%C3%B3n_753.png)
+
