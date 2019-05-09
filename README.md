@@ -119,6 +119,9 @@ Anexo A  | Anexo B
 
 ![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/mapa_de_aplicaciones.png)
 
+![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/warning-png-image-24434.png)   | PROBLEMAS DE COMPATIBILIDAD
+------------- | -------------
+En la versión original point_of_sale odoo9, las aplicaciones pos_product_available_negative y siki_pos_restrictions | En el point_of_sale versionado del odoo11, las aplicaciones antes mencionadas no corren // Posible solución: diagnosticar funciones no compatibles y desarrollarlas en funci[on al point_of_sale versionado del odoo11
 
 ---------------------
 ---------------------
