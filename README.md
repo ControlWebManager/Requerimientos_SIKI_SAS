@@ -25,12 +25,15 @@ siki_buttons_addtocart_wishlist
     de otra forma se recibe error 500. Con esta actualizacion no es necesario elminar registros manuales, al desintalar shop_siki
     solo se debe actualizar la app website_sale_wishlist. 
 
-##Anexos
+## Anexos
 
 Anexo A  | Anexo B
 ------------- | -------------
-![](https://pandao.github.io/editor.md/examples/images/4.jpg)  | ![](https://pandao.github.io/editor.md/examples/images/4.jpg)
-     
+![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/Selecci%C3%B3n_741.png)  | ![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/Selecci%C3%B3n_742.png)
+
+Anexo C  | Anexo D
+------------- | -------------
+![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/Selecci%C3%B3n_743.png)  | ![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/Selecci%C3%B3n_744.png)
      
 
 ---------------------
@@ -56,6 +59,10 @@ siki_website_sale_social_share
     * V.-1.1 Se adapta funcionalidad de Whatsapp Shared Button
     * V.-2.0 Modificación de código para adaptar diseño con diferentes variantes en cuanto aplicaciones instaladas
 
+## Anexos
+
+![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/Selecci%C3%B3n_745.png)
+
 ---------------------
 ---------------------
 # Requerimiento 1068
@@ -72,6 +79,11 @@ siki_pos_close_button
 
     * V.-1.0 Hide boton Close in Screen Receipt ( Req. 1068 )
 
+## Anexos
+
+Anexo A  | Anexo B
+------------- | -------------
+![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/Selecci%C3%B3n_751.png)  | ![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/Selecci%C3%B3n_752.png)
 
 ---------------------
 ---------------------
@@ -83,10 +95,26 @@ Entregas varias de aplicaciones
 
 Nombre de la APP  | Objetivo
 ------------- | -------------
-siki_pos_block  | Bloqueo de POS ; Botón en español "Bloqueo/Caja" ; Mejoras en codigo
 siki_pos_password_hide  | Ocultar clave (pin) dentro de la configuraciones de Usuario pestaña TPV
-siki_pos_restricciones  | Privilegio de usuario para procesar descuentos o cambiar precios en Sesión de POS    
-     
+siki_pos_block  | Bloqueo de POS ; Botón en español "Bloqueo/Caja" ; Mejoras en codigo
+siki_pos_restricciones  | Privilegio de usuario para procesar descuentos o cambiar precios en Sesión de POS  
+
+## Anexos
+
+### siki_pos_password_hide 
+Anexo A  | Anexo B
+------------- | -------------
+![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/Selecci%C3%B3n_747.png)  | ![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/Selecci%C3%B3n_746.png)
+
+### siki_pos_block
+![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/Selecci%C3%B3n_748.png) 
+ 
+### siki_pos_restricciones
+Anexo A  | Anexo B
+------------- | -------------
+![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/Selecci%C3%B3n_749.png)  | ![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/Selecci%C3%B3n_750.png)
+
+
 ## Mapa de aplicaciones:
 
 ![](https://github.com/ControlWebManager/Requerimientos_SIKI_SAS/blob/master/img/mapa_de_aplicaciones.png)
