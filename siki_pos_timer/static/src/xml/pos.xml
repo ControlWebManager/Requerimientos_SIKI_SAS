@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+
+<t t-name="TimeManagementPopup" >
+    <div role="dialog" class="modal-dialog">
+        <div class="popup popup-textinput">
+            <header class="title"><t t-esc=" widget.options.title || '' " />
+            </header>
+            <main class="body"><t t-esc="  widget.options.body || '' "/></main>
+            <footer class="footer">
+                <div class="button cancel">
+                    Ok
+                </div>
+
+            </footer>
+        </div>
+    </div>
+
+</t>
+
+<t t-extend="Orderline">
+
+    <t t-jquery=".info-list" t-operation="after">
+        <t t-if="line.cronometro">
+           <div>
+               <span t-attf-class="#{line.checked_in == true and line.checked_out == false  ? 'wk-checkout' : 'wk-checkin' } ">
+                    <i aria-hidden="true" t-attf-class="fa #{line.checked_in == true and line.checked_out == false ?'fa-stop' : 'fa-play' } "/>
+               </span>
+
+                <!--<span  class="wk-checkin">
+                    <i aria-hidden="true" class="fa fa-play"/>
+               </span>
+
+                <span class="wk-checkout">
+                    <i aria-hidden="true" class="fa fa-stop"/>
+               </span>-->
+
+                <span  class="wk-timer" >
+                    <t t-esc="line.usage_time"/>
+                </span>
+            </div>
+            <!--
+            <t t-set="foo" t-value="line"/>
+                <t t-js="ctx">
+                console.log('checked_in', ctx.foo.checked_in)
+                console.log('checked_out', ctx.foo.checked_out)
+                console.log('usage_time', ctx.foo.usage_time)
+
+                Object.getOwnPropertyNames(ctx.foo).forEach(function(val, idx, array) {
+                  //console.log(val + " -> " + ctx.foo[val]);
+                });
+            </t>-->
+        </t>
+    </t>
+</t>
+
+</templates>

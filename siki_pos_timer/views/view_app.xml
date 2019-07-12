@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <!-- Inherit Form view -->
+        <record id="siki_pos_timer_form_inherit" model="ir.ui.view">
+            <field name="name">product.template.form.inherit.siki.pos.timer</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+               <xpath expr="//group[@name='pos']/field[@name='to_weight']" position="after">
+                   <field name="cronometro"/>
+                </xpath>
+            </field>
+        </record>
+
+
+    </data>
+</openerp>

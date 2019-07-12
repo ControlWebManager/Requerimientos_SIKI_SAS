@@ -1,0 +1,39 @@
+/* Copyright 2019 GTICA.com,.ve - Ing. Henry Vivas
+   License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl). */
+
+.wk-checkin {
+    font-size: 30px;
+    cursor: pointer;
+    color: #4dc188;
+    transition: 0.5s;
+}
+
+.wk-checkout {
+    color: #e06568;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.wk-checkin:hover {
+    color: #3ca772
+}
+
+.wk-checkout:hover {
+    color: #cc5c5f
+}
+
+.checked-in-line {
+    color: #4dc187;
+}
+
+.wk-timer {
+    position: relative;
+    bottom: 4px;
+    left: 10px;
+    color: #5da782;
+    font-weight: bold;
+    padding: 6px;
+    border-radius: 5px;
+    font-size: 25px;
+}
