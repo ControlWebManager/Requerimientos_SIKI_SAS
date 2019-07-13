@@ -153,7 +153,7 @@ odoo.define('siki_pos_timer.screens', function(require) {
         },
         click_line: function(orderline, event) {
             var self = this;
-            console.log('Line 156 orderline.product ',orderline.product)
+            console.log('Line 156 orderline.product ',orderline.product.cronometro)
 
 
             self._super(orderline, event)

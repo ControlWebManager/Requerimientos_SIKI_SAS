@@ -31,7 +31,7 @@ odoo.define('siki_pos_timer.models', function(require) {
         },
         can_be_merged_with: function(orderline) {
             var self = this;
-            console.log('LIne 34 models.js Orderline',orderline.product )
+           // console.log('LIne 34 models.js Orderline',orderline.product )
             if (orderline.product.cronometro)
                 return false;
             return SuperOrderline.can_be_merged_with.call(this, orderline);

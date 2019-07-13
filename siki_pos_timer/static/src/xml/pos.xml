@@ -21,7 +21,7 @@
 <t t-extend="Orderline">
 
     <t t-jquery=".info-list" t-operation="after">
-        <t t-if="line.cronometro">
+        <t t-if="line.product.cronometro">
            <div>
                <span t-attf-class="#{line.checked_in == true and line.checked_out == false  ? 'wk-checkout' : 'wk-checkin' } ">
                     <i aria-hidden="true" t-attf-class="fa #{line.checked_in == true and line.checked_out == false ?'fa-stop' : 'fa-play' } "/>
@@ -39,15 +39,13 @@
                     <t t-esc="line.usage_time"/>
                 </span>
             </div>
-            <!--
-            <t t-set="foo" t-value="line"/>
-                <t t-js="ctx">
-                console.log('checked_in', ctx.foo.checked_in)
-                console.log('checked_out', ctx.foo.checked_out)
-                console.log('usage_time', ctx.foo.usage_time)
+            <!--<t t-set="foo" t-value="line.product.cronometro"/>
+            <t t-js="ctx">
+
+                console.log('usage_time', ctx.foo)
 
                 Object.getOwnPropertyNames(ctx.foo).forEach(function(val, idx, array) {
-                  //console.log(val + " -> " + ctx.foo[val]);
+                  console.log(val + " -> " + ctx.foo[val]);
                 });
             </t>-->
         </t>

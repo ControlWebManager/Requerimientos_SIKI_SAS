@@ -22,7 +22,7 @@ List of modifications:
     ],
     'data': [
         'templates/assets.xml',
-        'views/view_app.xml',
+        'view_app.xml',
     ],
     'qweb': [
         'static/src/xml/pos.xml'

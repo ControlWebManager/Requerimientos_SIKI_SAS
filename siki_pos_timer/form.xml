@@ -1,0 +1,230 @@
+
+http://odoodemo.webkul.com:8327/web/login
+http://odoodemo.webkul.com:8327/web?debug=assets#id=140&view_type=form&model=ir.model&menu_id=29&action=14
+
+Field_name Fielda>label MOdel  Field_Type Type
+manage_time	Manage Time	Product	boolean	Base Field
+Campo relacional
+Propiedade avanzadas: Related Field	product_tmpl_id.manage_time
+
+manage_time	Manage Time	Product Template	boolean	Base Field
+<data><xpath expr="//div[@name='options']" position="inside">
+                <div>
+                    <field name="manage_time"/>
+                    <label for="manage_time"/>
+                </div>
+            </xpath>
+            <xpath expr="//group[@name='group_standard_price']/field[@name='list_price']" position="replace">
+                <label for="list_price" attrs="{'invisible': [('manage_time', '=', False)]}"/>
+                <div attrs="{'invisible': [('manage_time', '=', False)]}">
+                    <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id'}" style="width: auto;"/>
+                    Per Hour(/hr)
+                </div>
+                <field name="list_price" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('manage_time', '=', True)]}"/>
+            </xpath>
+        </data>
+usage_time	Allocation Time	Lines of Point of Sale Orders	char	Base Field
+<xpath expr="//field[@name='notice']" position="after">
+	<field name="usage_time"/>
+</xpath>
+
+
+<form string="Product" modifiers="{}">
+	<header modifiers="{}">
+		<button string="Variant Prices" type="action" name="106" attrs="{'invisible': [('product_variant_count', '&lt;=', 1)]}" modifiers="{'invisible':[['product_variant_count','&lt;=',1]]}" options="{}"/>
+	</header>
+	<sheet modifiers="{}">
+		<field name="product_variant_count" invisible="1" modifiers="{'readonly':true,'invisible':true}"/>
+		<field name="is_product_variant" invisible="1" modifiers="{'readonly':true,'invisible':true}"/>
+		<field name="id" invisible="True" modifiers="{'readonly':true,'invisible':true}"/>
+		<div class="oe_button_box" name="button_box" modifiers="{}">
+			<button class="oe_stat_button" name="website_publish_button" type="object" icon="fa-globe" attrs="{'invisible': [('sale_ok','=',False)]}" modifiers="{'invisible':[['sale_ok','=',false]]}" options="{}">
+				<field name="website_published" widget="website_button" modifiers="{}"/>
+			</button>
+			<button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive" modifiers="{}" options="{}">
+				<field name="active" widget="boolean_button" options="{'terminology': 'archive'}" modifiers="{}"/>
+			</button>
+		</div>
+		<field name="image_medium" widget="image" class="oe_avatar" modifiers="{}"/>
+		<div class="oe_title" modifiers="{}">
+			<label class="oe_edit_only" for="name" string="Product Name" modifiers="{}"/>
+			<h1 modifiers="{}">
+				<field name="name" placeholder="Product Name" modifiers="{'required':true}"/>
+			</h1>
+			<div name="options" modifiers="{}">
+				<div modifiers="{}">
+					<field name="sale_ok" on_change="1" modifiers="{}"/>
+					<label for="sale_ok" modifiers="{}"/>
+				</div>
+				<div modifiers="{}">
+					<field name="purchase_ok" modifiers="{}"/>
+					<label for="purchase_ok" modifiers="{}"/>
+				</div>
+				<div modifiers="{}">
+					<field name="manage_time" modifiers="{}"/>
+					<label for="manage_time" modifiers="{}"/>
+				</div>
+			</div>
+		</div>
+		<notebook modifiers="{}">
+			<page string="General Information" name="general_information" modifiers="{}">
+				<group modifiers="{}">
+					<group name="group_general" modifiers="{}">
+						<field name="type" modifiers="{'required':true}"/>
+						<field name="categ_id" string="Category" on_change="1" can_create="true" can_write="true" modifiers="{'required':true}"/>
+						<field name="hs_code" modifiers="{}"/>
+					</group>
+					<group name="group_standard_price" modifiers="{}">
+						<label for="list_price" attrs="{'invisible': [('manage_time', '=', False)]}" modifiers="{'invisible':[['manage_time','=',false]]}"/>
+						<div attrs="{'invisible': [('manage_time', '=', False)]}" modifiers="{'invisible':[['manage_time','=',false]]}">
+							<field name="list_price" widget="monetary" options="{'currency_field': 'currency_id'}" style="width: auto;" modifiers="{}"/>
+
+                    Per Hour(/hr)
+
+						</div>
+						<field name="list_price" widget="monetary" options="{'currency_field': 'currency_id'}" attrs="{'invisible': [('manage_time', '=', True)]}" modifiers="{'invisible':[['manage_time','=',true]]}"/>
+						<field name="valuation" invisible="1" readonly="1" modifiers="{'readonly':true,'invisible':true}"/>
+						<field name="cost_method" invisible="1" readonly="1" modifiers="{'readonly':true,'invisible':true}"/>
+						<field name="property_cost_method" invisible="1" on_change="1" modifiers="{'invisible':true}"/>
+						<label for="standard_price" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}" modifiers="{'invisible':[['product_variant_count','&gt;',1],['is_product_variant','=',false]]}"/>
+						<div name="standard_price_uom" attrs="{'invisible': [('product_variant_count', '&gt;', 1), ('is_product_variant', '=', False)]}" modifiers="{'invisible':[['product_variant_count','&gt;',1],['is_product_variant','=',false]]}">
+							<div class="o_row" modifiers="{}">
+								<field name="standard_price" attrs="{'readonly':[('valuation','=','real_time')]}" widget="monetary" options="{'currency_field': 'currency_id', 'field_digits': True}" modifiers="{'readonly':[['valuation','=','real_time']]}"/>
+								<button string="Update Cost" type="action" name="342" attrs="{'invisible':['|', '|', ('valuation','!=', 'real_time'), ('cost_method', 'not in', ['average', 'standard']), ('product_variant_count', '&gt;', 1)]}" class="oe_link oe_read_only" colspan="2" modifiers="{'invisible':['|','|',['valuation','!=','real_time'],['cost_method','not in',['average','standard']],['product_variant_count','&gt;',1]]}" options="{}"/>
+							</div>
+						</div>
+						<field name="company_id" options="{'no_create': True}" can_create="true" can_write="true" invisible="1" modifiers="{'invisible':true}"/>
+						<field name="uom_id" options="{'no_create': True}" on_change="1" can_create="true" can_write="true" invisible="1" modifiers="{'required':true,'invisible':true}"/>
+						<field name="uom_po_id" options="{'no_create': True}" can_create="true" can_write="true" invisible="1" modifiers="{'required':true,'invisible':true}"/>
+						<field name="currency_id" invisible="1" can_create="true" can_write="true" modifiers="{'readonly':true,'invisible':true}"/>
+						<field name="product_variant_id" invisible="1" can_create="true" can_write="true" modifiers="{'readonly':true,'invisible':true}"/>
+					</group>
+				</group>
+			</page>
+			<page string="Sales" attrs="{'invisible':[('sale_ok','=',False)]}" name="sales" modifiers="{'invisible':[['sale_ok','=',false]]}">
+				<div name="pricelist_item" invisible="1" modifiers="{'invisible':true}">
+					<separator string="Pricing" modifiers="{}"/>
+					<field name="item_ids" nolabel="1" context="{'default_base':'list_price', 'default_applied_on' :'1_product'}" modifiers="{}"/>
+				</div>
+				<group name="sale" modifiers="{}">
+					<group name="website" string="Website" modifiers="{}">
+						<field name="website_url" invisible="1" modifiers="{'readonly':true,'invisible':true}"/>
+						<field name="public_categ_ids" widget="many2many_tags" string="eCommerce Categories" can_create="true" can_write="true" modifiers="{}"/>
+						<field name="alternative_product_ids" widget="many2many_tags" can_create="true" can_write="true" modifiers="{}"/>
+						<field name="accessory_product_ids" widget="many2many_tags" can_create="true" can_write="true" modifiers="{}"/>
+						<field name="inventory_availability" widget="selection" attrs="{'invisible':[('type', 'in', ['service', 'consu'])]}" modifiers="{'invisible':[['type','in',['service','consu']]]}"/>
+						<field name="available_threshold" attrs="{'invisible': ['|', ('type', 'in', ['service', 'consu']), ('inventory_availability', '!=', 'threshold')], 'required': [('inventory_availability', '=', 'threshold'), ('type', '=', 'product')]}" modifiers="{'required':[['inventory_availability','=','threshold'],['type','=','product']],'invisible':['|',['type','in',['service','consu']],['inventory_availability','!=','threshold']]}"/>
+						<field name="custom_message" attrs="{'invisible': ['|', ('type', 'in', ['service', 'consu']), ('inventory_availability', '!=', 'custom')]}" modifiers="{'invisible':['|',['type','in',['service','consu']],['inventory_availability','!=','custom']]}"/>
+						<field name="website_style_ids" widget="many2many_tags" can_create="true" can_write="true" modifiers="{}"/>
+					</group>
+					<group name="pos" string="Point of Sale" modifiers="{}">
+						<field name="available_in_pos" modifiers="{}"/>
+						<field name="pos_categ_id" attrs="{'invisible': [('available_in_pos', '=', False)]}" string="PoS Category" can_create="true" can_write="true" modifiers="{'invisible':[['available_in_pos','=',false]]}"/>
+						<field name="to_weight" attrs="{'invisible': [('available_in_pos', '=', False)]}" modifiers="{'invisible':[['available_in_pos','=',false]]}"/>
+					</group>
+					<group name="email_template_and_project" attrs="{'invisible':[('type', '!=', 'service')]}" modifiers="{'invisible':[['type','!=','service']]}"/>
+				</group>
+			</page>
+			<page string="Inventory" name="inventory" attrs="{'invisible':[('type', '=', 'service')]}" modifiers="{'invisible':[['type','=','service']]}">
+				<group name="inventory" modifiers="{}">
+					<group string="Operations" name="operations" modifiers="{}">
+						<field name="route_ids" widget="many2many_checkboxes" attrs="{'invisible':[('type', 'in', ['service', 'digital'])]}" can_create="true" can_write="true" modifiers="{'invisible':[['type','in',['service','digital']]]}"/>
+						<field name="route_from_categ_ids" widget="many2many_tags" readonly="1" attrs="{'invisible':[('route_from_categ_ids', '=', [])]}" can_create="true" can_write="true" modifiers="{'readonly':true,'invisible':[['route_from_categ_ids','=',[]]]}"/>
+						<label for="sale_delay" modifiers="{}"/>
+						<div modifiers="{}">
+							<field name="sale_delay" attrs="{'readonly':[('sale_ok','=',False)]}" class="oe_inline" style="vertical-align:baseline" modifiers="{'readonly':[['sale_ok','=',false]]}"/>
+							 days
+
+						</div>
+					</group>
+					<group string="Logistics" name="group_lots_and_weight" attrs="{'invisible':[('type', 'not in', ['product', 'consu'])]}" modifiers="{'invisible':[['type','not in',['product','consu']]]}">
+						<label for="weight" modifiers="{}"/>
+						<div class="o_row" name="weight" modifiers="{}">
+							<field name="weight" modifiers="{}"/>
+							<span modifiers="{}">
+								kg
+							</span>
+						</div>
+						<label for="volume" modifiers="{}"/>
+						<div class="o_row" name="volume" modifiers="{}">
+							<field name="volume" string="Volume" modifiers="{}"/>
+							<span modifiers="{}">
+								m³
+							</span>
+						</div>
+					</group>
+					<group string="Traceability" name="traceability" invisible="1" modifiers="{'invisible':true}">
+						<field name="tracking" widget="radio" attrs="{'invisible':[('type', 'in', ['service', 'digital'])]}" on_change="1" modifiers="{'required':true,'invisible':[['type','in',['service','digital']]]}"/>
+					</group>
+					<group string="Counterpart Locations" name="stock_property" modifiers="{}">
+						<field name="property_stock_production" domain="[('usage','=','production')]" can_create="true" can_write="true" modifiers="{}"/>
+						<field name="property_stock_inventory" domain="[('usage','=','inventory')]" can_create="true" can_write="true" modifiers="{}"/>
+					</group>
+				</group>
+				<group name="packaging" string="Packaging" colspan="4" invisible="1" modifiers="{'invisible':true}">
+					<field name="packaging_ids" nolabel="1" context="{'default_product_id': product_variant_id,'tree_view_ref':'product.product_packaging_tree_view', 'form_view_ref':'product.product_packaging_form_view'}" modifiers="{}"/>
+				</group>
+			</page>
+			<page string="Invoicing" name="invoicing" modifiers="{}">
+				<group name="properties" modifiers="{}">
+					<group string="Receivables" modifiers="{}">
+						<field name="taxes_id" widget="many2many_tags" can_create="true" can_write="true" modifiers="{}"/>
+						<field name="property_account_income_id" domain="[('internal_type','=','other'),('deprecated','=',False)]" can_create="true" can_write="true" invisible="1" modifiers="{'invisible':true}"/>
+					</group>
+					<group string="Payables" name="payables" modifiers="{}">
+						<field name="supplier_taxes_id" widget="many2many_tags" can_create="true" can_write="true" modifiers="{}"/>
+						<field name="property_account_expense_id" domain="[('internal_type','=','other'),('deprecated','=',False)]" can_create="true" can_write="true" invisible="1" modifiers="{'invisible':true}"/>
+					</group>
+				</group>
+				<group name="accounting" modifiers="{}">
+					<group name="property_inventory_valuation" string="Stock Valuation" invisible="1" modifiers="{'invisible':true}">
+						<field name="property_valuation" invisible="1" on_change="1" modifiers="{'invisible':true}"/>
+						<field name="property_stock_account_input" domain="[('deprecated', '=', False)]" can_create="true" can_write="true" modifiers="{}"/>
+						<field name="property_stock_account_output" domain="[('deprecated', '=', False)]" can_create="true" can_write="true" modifiers="{}"/>
+					</group>
+				</group>
+				<group name="invoicing" modifiers="{}">
+					<group string="Invoicing" name="invoicing" attrs="{'invisible': [('sale_ok','=',False)]}" modifiers="{'invisible':[['sale_ok','=',false]]}">
+						<field name="invoice_policy" widget="radio" modifiers="{}"/>
+						<field name="service_type" widget="radio" invisible="True" modifiers="{'invisible':true}"/>
+					</group>
+				</group>
+			</page>
+			<page string="Notes" name="notes" modifiers="{}">
+				<group name="description_internal" modifiers="{}">
+					<group string="Description for Internal" modifiers="{}">
+						<field name="description" nolabel="1" placeholder="This note is only for internal purposes." modifiers="{}"/>
+					</group>
+				</group>
+				<group name="description" modifiers="{}">
+					<group string="Description for Customers" attrs="{'invisible': [('sale_ok','=',False)]}" modifiers="{'invisible':[['sale_ok','=',false]]}">
+						<field name="description_sale" nolabel="1" placeholder="This note will show up on sales orders." modifiers="{}"/>
+					</group>
+				</group>
+				<group modifiers="{}">
+					<group string="Description for Delivery Orders" modifiers="{}">
+						<field name="description_pickingout" nolabel="1" placeholder="This note will show up on delivery orders." modifiers="{}"/>
+					</group>
+					<group string="Description for Receptions" modifiers="{}">
+						<field name="description_pickingin" nolabel="1" placeholder="This note will show up on the receipt orders (e.g. where to store the product in the warehouse)." modifiers="{}"/>
+					</group>
+					<group string="Description for Internal Transfers" modifiers="{}">
+						<field name="description_picking" placeholder="This note will show up  on internal transfer orders (e.g. where to pick the product in the warehouse)." nolabel="1" modifiers="{}"/>
+					</group>
+				</group>
+				<group name="warning" modifiers="{}">
+					<group name="sale_warning" modifiers="{}"/>
+					<group name="purchase_warning" modifiers="{}"/>
+				</group>
+			</page>
+			<page string="Images" invisible="1" modifiers="{'invisible':true}">
+				<field name="product_image_ids" mode="kanban" context="{'default_name': name, 'default_product_tmpl_id': active_id}" modifiers="{}"/>
+			</page>
+		</notebook>
+	</sheet>
+	<div class="oe_chatter" modifiers="{}">
+		<field name="message_follower_ids" widget="mail_followers" modifiers="{}"/>
+		<field name="activity_ids" widget="mail_activity" modifiers="{}"/>
+		<field name="message_ids" widget="mail_thread" modifiers="{}" options="{'display_log_button': True}"/>
+	</div>
+</form>
