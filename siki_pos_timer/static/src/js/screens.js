@@ -112,13 +112,17 @@ odoo.define('siki_pos_timer.screens', function(require) {
             //} else {
             //    orderline.set_quantity(hours + 1);
             //}
-                        var factor_inv = this.pos.units_by_id[orderline.product.uom_id[0]].factor_inv;
+            var factor_inv = this.pos.units_by_id[orderline.product.uom_id[0]].factor_inv;
 
             var total = (hours * 60 + minutes) ;
             console.log('Line 116 ', total)
             console.log('Line 116 factor_inv ',factor_inv)
-            orderline.set_quantity(total);
+            if(factor_inv == 60){
+                orderline.set_quantity(total/60);
 
+            }else{
+                orderline.set_quantity(total);
+            }
             this.rerender_orderline(orderline);
             this.update_summary();
         },
