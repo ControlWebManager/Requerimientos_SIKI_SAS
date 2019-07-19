@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+       <record id="product_uom_categ_time" model="product.uom.categ">
+            <field name="name">Tiempo</field>
+        </record>
+
+       <record id="product_uom_service_hour" model="product.uom">
+            <field name="category_id" ref="product_uom_categ_time"/>
+            <field name="name">Hora(S)</field>
+            <field name="factor" eval="1.0"/>
+            <field name="rounding" eval="0.01"/>
+       </record>
+
+        <record id="product_uom_service_minute" model="product.uom">
+            <field name="category_id" ref="product_uom_categ_time"/>
+            <field name="name">Minuto(s)</field>
+            <field name="factor" eval="60"/>
+            <field name="uom_type">smaller</field>
+        </record>
+    </data>
+</odoo>

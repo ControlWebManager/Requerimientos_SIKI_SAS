@@ -8,19 +8,22 @@
     'category': 'Point of Sale',
     'author': 'Ing Henry Vivas controlwebmanager@gmail.com,',
     'website': '',
-    'license': 'AGPL-3',
     'sequence': 150,
     'description': """
 
 List of modifications:
 ----------------------
     * V.-1.0 Adaptacion inicial
-    * V.-1.2 Filtro para que el cronometro solo aparezca en productos determinados    
+    * V.-1.2 Filtro para que el cronometro solo aparezca en productos determinados
+    * V.-1.3 Mostrar Tiempo en la linea del producto del Ticket POS
+    * V.-2.0 Instalación automática de Unidades de Medidas, Hora, Minutos      
  """,
     'depends': [
+        'product',
         'point_of_sale',
     ],
     'data': [
+        'data/siki_pos_timer_data.xml',
         'templates/assets.xml',
         'view_app.xml',
     ],

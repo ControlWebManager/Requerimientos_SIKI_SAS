@@ -52,4 +52,42 @@
     </t>
 </t>
 
+<t t-extend="PosTicket">
+
+<t t-jquery="table.receipt-orderlines tr" t-operation="inner">
+
+        <td>
+
+            <t t-esc="orderline.get_product().display_name"/>
+            <t t-if="orderline.product.cronometro">
+                <br></br><b>Tiempo</b>
+            </t>
+             <t t-if="orderline.get_discount() > 0">
+                <div class="pos-disc-font">
+                    With a <t t-esc="orderline.get_discount()"/>% discount
+                </div>
+            </t>
+        </td>
+        <td class="pos-right-align">
+            <t t-esc="orderline.get_quantity_str_with_unit()"/>
+            <t t-if="orderline.product.cronometro" t-esc="orderline.usage_time"/>
+
+        </td>
+        <td class="pos-right-align">
+            <t t-esc="widget.format_currency(orderline.get_display_price())"/>
+        </td>
+
+        <t t-set="foo" t-value="orderline"/>
+        <t t-js="ctx">
+
+            console.log('orderline', ctx.foo)
+
+            Object.getOwnPropertyNames(ctx.foo).forEach(function(val, idx, array) {
+              //console.log(val + " -> " + ctx.foo[val]);
+            });
+        </t>
+
+</t>
+</t>
+
 </templates>

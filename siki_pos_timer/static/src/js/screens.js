@@ -99,29 +99,26 @@ odoo.define('siki_pos_timer.screens', function(require) {
 
             /*** Separa Hora , Minutos, Segundos, tipo de variable de escape Int */
             /**/let hours = parseInt(duration.split(":")[0]);
+
             /**///Anteponiendo un 0 a los minutos si son menos de 10
             let minutes = parseInt(duration.split(":")[1]);
             /**/let seconds = parseInt(duration.split(":")[2]);
-            /*** ***/
 
-            /*Condicional para sumar la hora si el cronometro no ha sido activado */
-            //if (minutes == 0 && seconds == 0) {
-            //    orderline.set_quantity(hours);
-
-            /*Condicional suma la hora */
-            //} else {
-            //    orderline.set_quantity(hours + 1);
-            //}
+            //factor_inv variable  de odoo que indica el valor de proporcion o relacion de la unidad de medidad
             var factor_inv = this.pos.units_by_id[orderline.product.uom_id[0]].factor_inv;
-
+            console.log('LIne 109 screens.js', factor_inv)
+            //Aca se transforma el forma hora (1:20:00 == 90 mint) para poder
             var total = (hours * 60 + minutes) ;
-            console.log('Line 116 ', total)
-            console.log('Line 116 factor_inv ',factor_inv)
-            if(factor_inv == 60){
-                orderline.set_quantity(total/60);
+
+
+            //Si la unidad de medida es de un minuto
+            if(factor_inv < 1){
+
+              orderline.set_quantity(total);
 
             }else{
-                orderline.set_quantity(total);
+                //Por paca se ejecuta cuando la uniodad de medida es Hora o unidades standar
+                orderline.set_quantity(total/60);
             }
             this.rerender_orderline(orderline);
             this.update_summary();
@@ -157,9 +154,8 @@ odoo.define('siki_pos_timer.screens', function(require) {
         },
         click_line: function(orderline, event) {
             var self = this;
-            console.log('Line 156 orderline.product ',orderline.product.cronometro)
 
-
+            console.log('Line 161 screens.js Version SIKI POS TIMER 2.0 20/07/2019')
             self._super(orderline, event)
             if ($(event.target).hasClass('fa-play'))
                 this.click_checkin(orderline);
