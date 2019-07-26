@@ -83,7 +83,7 @@ odoo.define('siki_pos_timer.screens', function(require) {
             orderline.usage_time = currentTimeString;
             var node = orderline.node;
             $(node).find(".wk-timer").text(currentTimeString);
-            this.pos.get_order().save_to_db();
+            //this.pos.get_order().save_to_db();
         },
         click_checkout: function(orderline) {
             clearInterval(orderline.timer_interval);
@@ -106,7 +106,7 @@ odoo.define('siki_pos_timer.screens', function(require) {
 
             //factor_inv variable  de odoo que indica el valor de proporcion o relacion de la unidad de medidad
             var factor_inv = this.pos.units_by_id[orderline.product.uom_id[0]].factor_inv;
-            console.log('LIne 109 screens.js', factor_inv)
+           // console.log('LIne 109 screens.js', factor_inv)
             //Aca se transforma el forma hora (1:20:00 == 90 mint) para poder
             var total = (hours * 60 + minutes) ;
 
@@ -120,6 +120,8 @@ odoo.define('siki_pos_timer.screens', function(require) {
                 //Por paca se ejecuta cuando la uniodad de medida es Hora o unidades standar
                 orderline.set_quantity(total/60);
             }
+            this.pos.get_order().save_to_db();
+
             this.rerender_orderline(orderline);
             this.update_summary();
         },
@@ -155,34 +157,14 @@ odoo.define('siki_pos_timer.screens', function(require) {
         click_line: function(orderline, event) {
             var self = this;
 
-            console.log('Line 161 screens.js Version SIKI POS TIMER 2.0 20/07/2019')
+            console.log('Line 161 screens.js Version SIKI POS TIMER 3.0 26/07/2019')
             self._super(orderline, event)
             if ($(event.target).hasClass('fa-play'))
                 this.click_checkin(orderline);
             else if ($(event.target).hasClass('fa-stop'))
                 this.click_checkout(orderline);
         },
-        render_orderline: function(orderline) {
-            var self = this;
-            var el_node = this._super(orderline);
 
-            this.$checkin_switch = $(el_node).find(".wk-checkin");
-            this.$checkout_switch = $(el_node).find(".wk-checkout");
-            this.$line_info = $(el_node).find("li.info");
-            this.$timer = $(el_node).find(".wk-timer");
 
-            return el_node;
-        },
-        renderElement: function(scrollbottom) {
-            var self = this;
-            this._super(scrollbottom);
-            var order = this.pos.get_order();
-            var orderlines = order.get_orderlines();
-            _.each(orderlines, line => {
-                if (line.checked_in && !line.timer_interval) {
-                    self.click_checkin(line)
-                }
-            });
-        },
     });
 });;

@@ -16,7 +16,9 @@ List of modifications:
     * V.-1.0 Adaptacion inicial
     * V.-1.2 Filtro para que el cronometro solo aparezca en productos determinados
     * V.-1.3 Mostrar Tiempo en la linea del producto del Ticket POS
-    * V.-2.0 Instalación automática de Unidades de Medidas, Hora, Minutos      
+    * V.-2.0 Instalación automática de Unidades de Medidas, Hora, Minutos
+    * V.-2.1 Adaptacion de tres decimales para los productos con tiempo
+    * V.-3.0 Aplicacion funcionando con administración de mesas     
  """,
     'depends': [
         'product',

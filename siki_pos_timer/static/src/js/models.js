@@ -8,7 +8,15 @@ odoo.define('siki_pos_timer.models', function(require) {
     var models = require("point_of_sale.models");
     var core = require('web.core');
     var _t = core._t;
+
+    var formats = require('web.formats');
+    var utils = require('web.utils');
+
+    var round_di = utils.round_decimals;
+    var round_pr = utils.round_precision;
+
     var SuperOrderline = models.Orderline.prototype;
+    var SuperOrder = models.Order.prototype;
 
     models.load_fields('product.product', 'cronometro');
 
@@ -46,7 +54,7 @@ odoo.define('siki_pos_timer.models', function(require) {
             //console.log('line 44 models.js dict',dict)
             return dict;
         },
-        set_quantity: function(quantity, keep_price) {
+        _set_quantity: function(quantity, keep_price) {
             var self = this;
             if (!this.checked_in)
                 SuperOrderline.set_quantity.call(this, quantity, keep_price);
@@ -57,29 +65,48 @@ odoo.define('siki_pos_timer.models', function(require) {
                 });
             }
         },
-        _set_quantity: function(quantity){
-        this.order.assert_editable();
-        if(quantity === 'remove'){
-            this.order.remove_orderline(this);
-            return;
-        }else{
-            var quant = parseFloat(quantity) || 0;
-            var unit = this.get_unit();
-            if(unit){
-                if (unit.rounding) {
-                    this.quantity    = round_pr(quant, unit.rounding);
-                    var decimals = this.pos.dp['Product Unit of Measure'];
-                    this.quantityStr = formats.format_value(round_di(this.quantity, decimals), { type: 'float', digits: [69, decimals]});
-                } else {
-                    this.quantity    = round_pr(quant, 1);
-                    this.quantityStr = this.quantity.toFixed(0);
+
+         set_quantity: function(quantity){
+
+            var self = this;
+
+            self.order.assert_editable();
+            // condiciona para asignar a decimal 3 o normal
+
+            if (!this.checked_in){
+                if(quantity === 'remove'){
+
+                    self.order.remove_orderline(self);
+
+                    return;
+                }else{
+                    var quant = parseFloat(quantity) || 0;
+                    var unit = self.get_unit();
+                    if(unit){
+                        if (unit.rounding) {
+                            console.log('LIne unit roundinbg',unit.rounding)
+                            self.quantity    = self.product.cronometro ? round_pr(quant, 0.001) : round_pr(quant, unit.rounding);
+                            var decimals = self.product.cronometro ? 3 : self.pos.dp['Product Unit of Measure'];
+                            console.log('LIne self 90..', self.product.cronometro, decimals)
+                            self.quantityStr = formats.format_value(round_di(self.quantity, decimals), { type: 'float', digits: [69, decimals]});
+                        } else {
+                            self.quantity    = round_pr(quant, 1);
+                            self.quantityStr = self.quantity.toFixed(0);
+                        }
+                    }else{
+                        self.quantity    = quant;
+                        self.quantityStr = '' + self.quantity;
+                    }
                 }
-            }else{
-                this.quantity    = quant;
-                this.quantityStr = '' + this.quantity;
+            }else {
+                self.pos.gui.show_popup('time_management_popup', {
+                    'title': _t('Operation Prohibited!!!'),
+                    'body': _t("You cannot update the quantity of this product as it is being utilized at the moment!!"),
+                });
             }
-        }
-        this.trigger('change',this);
-    },
+            self.trigger('change',self);
+
+        },
+        // return the quantity of product
     });
 });;
