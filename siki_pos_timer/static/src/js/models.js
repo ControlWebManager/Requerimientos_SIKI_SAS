@@ -23,7 +23,6 @@ odoo.define('siki_pos_timer.models', function(require) {
     models.Orderline = models.Orderline.extend({
         initialize: function(attr, options) {
             SuperOrderline.initialize.call(this, attr, options);
-            //console.log('line 15 models.js options',attr,options)
             this.checked_in = false;
             this.checked_out = false;
             this.usage_time = "00:00:00";
@@ -60,8 +59,8 @@ odoo.define('siki_pos_timer.models', function(require) {
                 SuperOrderline.set_quantity.call(this, quantity, keep_price);
             else {
                 self.pos.gui.show_popup('time_management_popup', {
-                    'title': _t('Operation Prohibited!!!'),
-                    'body': _t("You cannot update the quantity of this product as it is being utilized at the moment!!"),
+                    'title': _t('Operación Prohibida!!!'),
+                    'body': _t("No puede actualizar la cantidad de este producto ya que se está utilizando en este momento!!"),
                 });
             }
         },
@@ -71,23 +70,17 @@ odoo.define('siki_pos_timer.models', function(require) {
             var self = this;
 
             self.order.assert_editable();
-            // condiciona para asignar a decimal 3 o normal
-
-            if (!this.checked_in){
+           if (!this.checked_in){
                 if(quantity === 'remove'){
-
                     self.order.remove_orderline(self);
-
                     return;
                 }else{
                     var quant = parseFloat(quantity) || 0;
                     var unit = self.get_unit();
                     if(unit){
                         if (unit.rounding) {
-                            console.log('LIne unit roundinbg',unit.rounding)
                             self.quantity    = self.product.cronometro ? round_pr(quant, 0.001) : round_pr(quant, unit.rounding);
                             var decimals = self.product.cronometro ? 3 : self.pos.dp['Product Unit of Measure'];
-                            console.log('LIne self 90..', self.product.cronometro, decimals)
                             self.quantityStr = formats.format_value(round_di(self.quantity, decimals), { type: 'float', digits: [69, decimals]});
                         } else {
                             self.quantity    = round_pr(quant, 1);
@@ -100,13 +93,12 @@ odoo.define('siki_pos_timer.models', function(require) {
                 }
             }else {
                 self.pos.gui.show_popup('time_management_popup', {
-                    'title': _t('Operation Prohibited!!!'),
-                    'body': _t("You cannot update the quantity of this product as it is being utilized at the moment!!"),
+                    'title': _t('Operación Prohibida!!!'),
+                    'body': _t("No puede actualizar la cantidad de este producto ya que se está utilizando en este momento!!"),
                 });
             }
             self.trigger('change',self);
 
         },
-        // return the quantity of product
     });
 });;

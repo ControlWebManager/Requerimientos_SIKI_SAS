@@ -12,14 +12,12 @@ odoo.define('siki_pos_timer.screens', function(require) {
             this._super();
             this.$('.pay').off("click");
             this.$('.pay').click(function() {
-                            //console.log('Line 15 screens.js', !self.pos.chrome.screens.products.order_widget.check_in_process())
 
                 if (self.pos.chrome.screens.products.order_widget.check_in_process()) {
 
-                   // console.info('Line 34si existo por aca pero no ejecuto popup', )
-                    self.gui.show_popup('time_management_popup', {
-                        'title': _t('Product Is Being Used!!!'),
-                        'body': _t("Please stop the utilization process in the orderlines to proceed!!"),
+                     self.gui.show_popup('time_management_popup', {
+                        'title': _t('Hay un producto de tiempo en proceso!!!'),
+                        'body': _t("Detenga el proceso en curso en la línea de pedido para continuar!!"),
                     });
                 }else {
                         self.gui.show_screen('payment');
@@ -46,7 +44,6 @@ odoo.define('siki_pos_timer.screens', function(require) {
                 }
             });
 
-            //console.info('Line 49 screens', ongoing )
             return ongoing;
         },
         click_checkin: function(orderline) {
@@ -90,38 +87,19 @@ odoo.define('siki_pos_timer.screens', function(require) {
             orderline.checked_out = true;
             orderline.checked_in = false;
             orderline.stop = new Date;
-
-            //Guarda la informacion en la BD temporal de la Aplicacion
             this.pos.get_order().save_to_db();
-
-            //Tiempo en funcionamiento del cronometro, tipo de variable String
             var duration = orderline.usage_time;
-
-            /*** Separa Hora , Minutos, Segundos, tipo de variable de escape Int */
-            /**/let hours = parseInt(duration.split(":")[0]);
-
-            /**///Anteponiendo un 0 a los minutos si son menos de 10
+            let hours = parseInt(duration.split(":")[0]);
             let minutes = parseInt(duration.split(":")[1]);
-            /**/let seconds = parseInt(duration.split(":")[2]);
-
-            //factor_inv variable  de odoo que indica el valor de proporcion o relacion de la unidad de medidad
+            let seconds = parseInt(duration.split(":")[2]);
             var factor_inv = this.pos.units_by_id[orderline.product.uom_id[0]].factor_inv;
-           // console.log('LIne 109 screens.js', factor_inv)
-            //Aca se transforma el forma hora (1:20:00 == 90 mint) para poder
             var total = (hours * 60 + minutes) ;
-
-
-            //Si la unidad de medida es de un minuto
             if(factor_inv < 1){
-
               orderline.set_quantity(total);
-
             }else{
-                //Por paca se ejecuta cuando la uniodad de medida es Hora o unidades standar
-                orderline.set_quantity(total/60);
+               orderline.set_quantity(total/60);
             }
             this.pos.get_order().save_to_db();
-
             this.rerender_orderline(orderline);
             this.update_summary();
         },
@@ -130,24 +108,13 @@ odoo.define('siki_pos_timer.screens', function(require) {
             orderline.checked_out = true;
             orderline.checked_in = false;
             orderline.stop = new Date;
-
-            //Guarda la informacion en la BD temporal de la Aplicacion
             this.pos.get_order().save_to_db();
-
-            //Tiempo en funcionamiento del cronometro, tipo de variable String
             var duration = orderline.usage_time;
-
-            /*** Separa Hora , Minutos, Segundos, tipo de variable de escape Int */
             /**/let hours = parseInt(duration.split(":")[0]);
             /**/let minutes = parseInt(duration.split(":")[1]);
             /**/let seconds = parseInt(duration.split(":")[2]);
-            /*** ***/
-
-            /*Condicional para sumar la hora si el cronometro no ha sido activado */
-            if (minutes == 0 && seconds == 0) {
+           if (minutes == 0 && seconds == 0) {
                 orderline.set_quantity(hours);
-
-            /*Condicional suma la hora */
             } else {
                 orderline.set_quantity(hours + 1);
             }
@@ -157,7 +124,6 @@ odoo.define('siki_pos_timer.screens', function(require) {
         click_line: function(orderline, event) {
             var self = this;
 
-            console.log('Line 161 screens.js Version SIKI POS TIMER 3.0 26/07/2019')
             self._super(orderline, event)
             if ($(event.target).hasClass('fa-play'))
                 this.click_checkin(orderline);
