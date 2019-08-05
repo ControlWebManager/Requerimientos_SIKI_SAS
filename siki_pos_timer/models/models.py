@@ -10,4 +10,4 @@ class SikiPosTimerProductTemplate(models.Model):
 class SikiPosTimerProductProduct(models.Model):
     _inherit = 'product.product'
 
-    cronometro = fields.Boolean(string='Cronómetro Producto', related="product_tmpl_id.cronometro")
+    cronometro = fields.Boolean(string='Producto basado en Tiempo', related="product_tmpl_id.cronometro")
