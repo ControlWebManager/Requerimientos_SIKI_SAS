@@ -5,7 +5,7 @@ from openerp import models, fields, api
 class SikiPosTimerProductTemplate(models.Model):
     _inherit = 'product.template'
 
-    cronometro = fields.Boolean(string='Cronómetro Producto')
+    cronometro = fields.Boolean(string='Producto basado en Tiempo')
 
 class SikiPosTimerProductProduct(models.Model):
     _inherit = 'product.product'
