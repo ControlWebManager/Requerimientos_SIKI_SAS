@@ -39,7 +39,7 @@ Bug Tracker
 ===========
 
 Bugs are tracked on `GitHub Issues
-<https://github.com/LasLabs/{project_repo}/issues>`_. In case of trouble, please
+<https://github.com/gtica/{project_repo}/issues>`_. In case of trouble, please
 check there if your issue has already been reported. If you spotted it first,
 help us to smash it by providing detailed and welcomed feedback.
 
@@ -49,12 +49,12 @@ Credits
 Images
 ------
 
-* LasLabs: `Icon <https://repo.laslabs.com/projects/TEM/repos/odoo-module_template/browse/module_name/static/description/icon.svg?raw>`_.
+* Gtica: `Icon <>`_.
 
 Contributors
 ------------
 
-* Firstname Lastname <my_email@laslabs.com>
+* Firstname Lastname <my_email@email.com>
 
 Maintainer
 ----------
