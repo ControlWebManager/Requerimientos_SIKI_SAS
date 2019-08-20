@@ -1,3 +1,13 @@
+# Requerimiento 1073
+
+## Descripción
+Precios por variante-Método de precio por segmento
+
+## Nombre de la Aplicación Final: 
+siki_segment_price
+
+### Nota
+
 # Requerimiento 1060 , 1061 , 1064
 
 ## Descripción: 
