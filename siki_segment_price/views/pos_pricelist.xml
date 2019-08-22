@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- vim:fdn=3:
+-->
+<openerp>
+    <data>
+
+
+        <template id="assets_backend" name="siki_segment_price assets" inherit_id="pos_pricelist_aces.assets_backend">
+            <xpath expr="//script[@src='/pos_pricelist_aces/static/src/js/pos.js']" position="replace">
+                <script type="text/javascript" src="/siki_segment_price/static/src/js/pos.js"></script>
+            </xpath>
+        </template>
+
+    </data>
+</openerp>
