@@ -15,6 +15,7 @@
         'product',
     ],
     'data': [
+        'views/pos_pricelist.xml',
         'views/product_view.xml'
     ],
 }
