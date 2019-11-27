@@ -2,13 +2,11 @@
 <templates id="template" xml:space="preserve">
 
      <t t-name="RefreshPosCache">
-
             <div class="oe_status">
                 <div class="js_pos_cache oe_icon oe_green">
                     <i class='fa fa-fw fa-database'></i>
                 </div>
             </div>
-
     </t>
 
 </templates>
